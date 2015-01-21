@@ -70,18 +70,74 @@ case 3,4,5:println("Peng")
 default:println("!")
 }
 
+var sss="ssss"
+
+func makeIncrementor(forIncrement amount: Int) -> () -> Int {
+    var runningTotal = 0
+    func incrementor() -> Int {
+        runningTotal += amount
+        return runningTotal
+    }
+    return incrementor
+}
+
+var ceshi=makeIncrementor(forIncrement: 20)
+ceshi()
+var ceshi2=ceshi
+ceshi2()
+ceshi=makeIncrementor(forIncrement: 10)
+ceshi()
+ceshi2()
+//  这里可以看出，ceshi 给ceshi2赋值 给的是一个先前创建的akeIncrementor(forIncrement: 20)的引用，而不是自己本身的引用，ceshi的重新赋值不会导致ceshi2的内容改变！！
+ceshi()
 
 
+enum CompassPoint {
+    case North
+    case South
+    case East
+    case West
+}
+
+enum Planet {
+    case Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune
+}
+
+var directionToHead = CompassPoint.West
+directionToHead = .East
+directionToHead = .South
+switch directionToHead {
+case .North:
+    println("Lots of planets have a north")
+case .South:
+    println("Watch out for penguins")
+case .East:
+    println("Where the sun rises")
+case .West:
+    println("Where the skies are blue")
+}
+// 输出 "Watch out for penguins”
 
 
+enum ASCIIControlCharacter: Character {
+    case Tab = "c"
+    case LineFeed = "\n"
+    case CarriageReturn = "\r"
+}
 
+var ces = ASCIIControlCharacter.Tab.rawValue
 
+struct Resolution {
+    var width = 0
+    var height = 0
+}
+class VideoMode {
+    var resolution = Resolution()
+    var interlaced = false
+    var frameRate = 0.0
+    var name: String?
+}
 
-
-
-
-
-
-
-
+let vga = Resolution(width:640, height: 480)
+let vga1 = Resolution(width: 640, height: 480)
 
